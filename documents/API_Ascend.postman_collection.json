@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "634ce472-3981-4542-b32e-342f22b169b0",
+		"name": "Ascend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25494448",
+		"_collection_link": "https://cloudy-crescent-206358.postman.co/workspace/ES~f40a40f2-ef95-47c4-b63a-fb28401a23fb/collection/25494448-634ce472-3981-4542-b32e-342f22b169b0?action=share&source=collection_link&creator=25494448"
+	},
+	"item": [
+		{
+			"name": "WD",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://utils.qa.walmart.com/rest/ldapusers/r0m09yu"
+			},
+			"response": []
+		},
+		{
+			"name": "Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9091/ECartPGPTen/api/ecarto/status"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:9091/ECartPGPTen/api/ecarto/authenticate"
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9091/ECartPGPTen/api/ecarto/user/1"
+			},
+			"response": []
+		},
+		{
+			"name": "User Searches",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ecarteyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmFudmlsbGUwQG5wcy5nb3YiLCJleHAiOjE2OTY0MDY2NjYsImlhdCI6MTY5NjM5OTQ2Nn0.qa1DRWydDCHK6ifTesQIDmdf9cTjktwg47FzDQHkb-LiL8cYertfs-DM71t_KE8yVNn-JAWVt4c8fyV2ga4IGA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9091/ECartPGPTen/api/ecartp/recentSearches/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"ECartPGPTen",
+						"api",
+						"ecartp",
+						"recentSearches",
+						"1"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": "ecarteyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmFudmlsbGUwQG5wcy5nb3YiLCJleHAiOjE2OTY0MDY2NjYsImlhdCI6MTY5NjM5OTQ2Nn0.qa1DRWydDCHK6ifTesQIDmdf9cTjktwg47FzDQHkb-LiL8cYertfs-DM71t_KE8yVNn-JAWVt4c8fyV2ga4IGA",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FavBrand&Category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9091/ECartPGPTen/api/ecartp/favBrandsCatg/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Promotions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9091/ECartPGPTen/api/v1/favBrandsCatg/1"
+			},
+			"response": []
+		}
+	]
+}

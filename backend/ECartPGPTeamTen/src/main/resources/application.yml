@@ -1,0 +1,109 @@
+spring:
+   application:
+      name: ECartPGPTen
+   profiles:
+    active: dev
+   
+server:
+   servlet:
+     contextPath: /ECartPGPTen	
+   port: 9090
+   config:
+     activate:
+       on-profile: dev
+---
+spring:
+   profiles: dev
+   active: true
+   variables:
+      imagepath: C:\\Raju\\Code\\test\\
+      logpath: C:\\Raju\\Code\\test\\
+   application:
+         
+      #ES Configurations
+      batchSize: 10000
+   data:
+     mongodb:
+        database: ascendTeam10
+        port: 27017
+        #uri: mongodb+srv://mongoUser:mongoUser@cluster0.jlhsj7w.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp 
+        uri: mongodb://localhost:27017
+server:
+   port: 9091
+logging:
+    file: 
+       name: ${spring.variables.logpath}ECartPGPTen.log
+       max-size: 10MB
+       max-history: 10
+       total-size-cap: 1024MB
+       clean-history-on-start: true
+    pattern:
+       rolling-file-name: ${spring.variables.logpath}ECar-%d{yyyy-MM-dd}.%i.log
+    level:
+       root: info
+       com.wm.ECartPGPTen: info
+       org.springframework: info
+       org:
+        springframework:
+          data:
+            mongodb:
+              core:
+                MongoTemplate: DEBUG
+---
+spring: 
+   profiles: stg
+   active: false
+   variables:
+      imagepath: //app//omni//ESOMNI//reports//
+      logpath: //app//omni//ESOMNI//
+   application:
+      name: ECartPGPTen
+         
+      #ES Configurations
+      batchSize: 10000
+      
+server:
+   port: 9092
+   
+logging:
+    file: 
+       name: ${spring.variables.logpath}logs//ECartPGPTen.log
+       max-size: 200MB
+       max-history: 10
+       total-size-cap: 1024MB
+       clean-history-on-start: true
+    pattern:
+       rolling-file-name: ${spring.variables.logpath}ECar//ECar-%d{yyyy-MM-dd}.%i.log
+    level:
+       root: info
+       com.wm.ECartPGPTen: debug
+       org.springframework: error	
+---
+spring: 
+   profiles: prod
+   active: false
+   variables:
+      imagepath: //app//omni//ESOMNI//reports//
+      logpath: //app//omni//ESOMNI//
+   application:
+      name: ECartPGPTen
+         
+      #ES Configurations
+      batchSize: 10000
+      
+server:
+   port: 9093
+   
+logging:
+    file: 
+       name: ${spring.variables.logpath}logs//ECartPGPTen.log
+       max-size: 200MB
+       max-history: 10
+       total-size-cap: 1024MB
+       clean-history-on-start: true
+    pattern:
+       rolling-file-name: ${spring.variables.logpath}ECar//ECar-%d{yyyy-MM-dd}.%i.log
+    level:
+       root: info
+       com.wm.ECartPGPTen: debug
+       org.springframework: error	
