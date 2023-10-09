@@ -23,13 +23,22 @@ public class UserDao {
 	@Autowired
 	MongoTemplate mongoTemplate;
 
-	public List<UserModel> findById(Integer userId) {
-		logger.debug("Get Details by Id");
-		BasicQuery query = new BasicQuery("{ id : { $eq : " + userId + " }}");
-		return mongoTemplate.find(query, UserModel.class);
+	public UserDao(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
 	}
 
-	public List<UserModel> findUserSearchesById(Integer userId) {
+	public List<UserModel> findById(Integer userId) throws Exception {
+		try {
+			logger.debug("Get Details by Id");
+			BasicQuery query = new BasicQuery("{ id : { $eq : " + userId + " }}");
+			List<UserModel> list = mongoTemplate.find(query, UserModel.class);
+			return list;
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+
+	public List<UserModel> findUserSearchesById(Integer userId) throws Exception{
 		logger.debug("Get User searches..!");
 
 		BasicQuery query = new BasicQuery("{ id : { $eq : " + userId + " }}");
@@ -37,7 +46,7 @@ public class UserDao {
 		return mongoTemplate.find(query, UserModel.class);
 	}
 
-	public List<UserModel> findUserfavbrandsById(Integer userId) {
+	public List<UserModel> findUserfavbrandsById(Integer userId) throws Exception{
 		logger.debug("Get User searches..!");
 
 		BasicQuery query = new BasicQuery("{ id : { $eq : " + userId + " }}");

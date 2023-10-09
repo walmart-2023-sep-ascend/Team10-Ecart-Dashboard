@@ -1,5 +1,6 @@
 package com.wm.ECartPGPTeamTen.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -48,5 +49,15 @@ public class UserModel {
 	private String phone;
 	private NameModel name;
 	private AddressModel address;
+	
+	@Override
+	public String toString() {
+		return "UserModel [_id=" + _id + ", id=" + id + ", email=" + email + ", password=" + password + ", validated="
+				+ validated + ", interests=" + interests + ", avtar=" + avtar + ", gender=" + gender + ", role=" + role
+				+ ", recentSearches=" + Arrays.toString(recentSearches) + ", favoriteCategories="
+				+ Arrays.toString(favoriteCategories) + ", phone=" + phone + ", name=" + name + ", address=" + address
+				+ "]";
+	}
+	
 	
 }

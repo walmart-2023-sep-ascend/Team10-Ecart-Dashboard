@@ -12,8 +12,7 @@ import com.wm.ECartPGPTeamTen.model.UserModel;
  */
 
 @Repository
-public interface UserRepository extends MongoRepository<UserModel, Integer> {
+public interface UserRepository extends MongoRepository<UserModel, String> {
 
-	Optional<UserModel> findByEmail(String email);
-
+	Optional<UserModel> findByEmail(String email) throws Exception;
 }

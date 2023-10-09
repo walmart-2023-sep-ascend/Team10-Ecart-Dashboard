@@ -17,7 +17,10 @@ import org.springframework.stereotype.Repository;
 import com.wm.ECartPGPTeamTen.dao.repository.ProductsRepository;
 import com.wm.ECartPGPTeamTen.model.ProductsModel;
 
+import lombok.NoArgsConstructor;
+
 @Repository
+@NoArgsConstructor
 public class ProductsDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProductsDao.class);
@@ -27,6 +30,10 @@ public class ProductsDao {
 
 	@Autowired
 	ProductsRepository productsRepository;
+
+	public ProductsDao(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
+	}
 
 	/**
 	 * 
@@ -56,7 +63,7 @@ public class ProductsDao {
 					search.addAll(Arrays.stream(s.split(SPACE)).collect(Collectors.toList()));
 				}
 
-				String searchs = search.stream().collect(Collectors.joining("\", \"", "\"", "\""));
+				String searchs = search.stream().collect(Collectors.joining("/,/","/","/"));
 				String q = "{ searchTags : { $in : " + Arrays.asList(searchs) + " }}";
 				BasicQuery query = new BasicQuery(q);
 				return mongoTemplate.find(query, ProductsModel.class);
@@ -87,7 +94,8 @@ public class ProductsDao {
 					search.addAll(Arrays.stream(s.split(SPACE)).collect(Collectors.toList()));
 				}
 
-				String searchs = search.stream().collect(Collectors.joining("\", \"", "\"", "\""));
+				String searchs = search.stream().collect(Collectors.joining("/,/","/","/"));
+				logger.info("Searches : "+searchs);
 				String q = "{ $or: [{ productCategory : { $in : " + Arrays.asList(searchs) + " }},"
 						+ "{ brand : { $in : " + Arrays.asList(searchs) + " }}]}";
 				BasicQuery query = new BasicQuery(q);

@@ -17,6 +17,7 @@ import com.wm.ECartPGPTeamTen.exception.ResourceNotFoundException;
 import com.wm.ECartPGPTeamTen.model.UserModel;
 import com.wm.ECartPGPTeamTen.service.UserService;
 import static com.wm.ECartPGPTeamTen.util.ECartUtil.INTERNAL_ERROR;
+import static com.wm.ECartPGPTeamTen.util.ECartUtil.RECORD_NOT_FOUND;;
 
 /**
  * r0m09yu
@@ -32,6 +33,10 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public ResponseEntity<UserModel> getEmployeeById(@PathVariable(value = "id") int userId)
 			throws ResourceNotFoundException, ECartException {
@@ -42,10 +47,10 @@ public class UserController {
 				return ResponseEntity.ok().body(listUser.get(0));
 			} else {
 				logger.error("Fetching user infol for User id :{0}", userId);
-				throw new ResourceNotFoundException("Employee not found for this id :: " + userId);
+				throw new ResourceNotFoundException(RECORD_NOT_FOUND + " :: " + userId);
 			}
-		}catch (Exception e) {
-			throw new ECartException(INTERNAL_ERROR+" :: " + userId);
+		} catch (Exception e) {
+			throw new ECartException(INTERNAL_ERROR + " :: " + userId);
 		}
 	}
 

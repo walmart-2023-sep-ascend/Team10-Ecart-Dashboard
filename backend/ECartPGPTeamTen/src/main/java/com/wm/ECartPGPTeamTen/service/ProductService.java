@@ -10,20 +10,25 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.wm.ECartPGPTeamTen.dao.ProductsDao;
 import com.wm.ECartPGPTeamTen.dao.UserDao;
+import com.wm.ECartPGPTeamTen.dao.repository.ProductsRepository;
 import com.wm.ECartPGPTeamTen.exception.ECartException;
 import com.wm.ECartPGPTeamTen.model.ProductsModel;
 import com.wm.ECartPGPTeamTen.model.UserModel;
 import com.wm.ECartPGPTeamTen.vo.CategoryAndBrandVO;
+
+import lombok.NoArgsConstructor;
 
 /**
  * r0m09yu
  */
 
 @Service
+@NoArgsConstructor
 public class ProductService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
@@ -33,6 +38,16 @@ public class ProductService {
 
 	@Autowired
 	ProductsDao productsDao;
+
+	@Autowired
+	ProductsRepository productsRepository;
+
+	public ProductService(ProductsRepository productsRepository, MongoTemplate mongoTemplate, UserDao userDao,
+			ProductsDao productsDao) {
+		this.productsRepository = productsRepository;
+		this.productsDao = new ProductsDao(mongoTemplate);
+		this.userDao = userDao;
+	}
 
 	/**
 	 * Fetches recent search products.
@@ -82,11 +97,11 @@ public class ProductService {
 							.collect(Collectors.toList());
 					vo.setBrands(brandsList);
 					vo.setCategories(catList);
+					return vo;
 				}
-				return vo;
 			}
 
-			return vo;
+			return null;
 		} catch (Exception e) {
 			logger.error("Error occured " + e);
 			throw new ECartException(INTERNAL_ERROR + " :: " + userId);
@@ -95,6 +110,7 @@ public class ProductService {
 
 	/**
 	 * Get all fav products based on fav category And Search List as well
+	 * 
 	 * @param userId
 	 * @return
 	 * @throws ECartException
@@ -103,12 +119,12 @@ public class ProductService {
 		List<ProductsModel> prodList = new ArrayList<ProductsModel>();
 		try {
 			List<String> search = new ArrayList<String>();
-			
+
 			List<UserModel> favCatlist = userDao.findUserfavbrandsById(userId);
 			List<UserModel> searchList = userDao.findUserSearchesById(userId);
 			logger.info("User details :list {0}" + favCatlist);
 			logger.info("User details :list {0}" + searchList);
-			
+
 			if (searchList != null && searchList.size() > 0) {
 				String[] arr = searchList.get(0).getRecentSearches();
 				search.addAll(Arrays.asList(arr));
@@ -117,7 +133,7 @@ public class ProductService {
 				String[] arr = favCatlist.get(0).getFavoriteCategories();
 				search.addAll(Arrays.asList(arr));
 			}
-			
+
 			if (search != null && search.size() > 0) {
 				String sear[] = new String[search.size()];
 				sear = search.toArray(sear);

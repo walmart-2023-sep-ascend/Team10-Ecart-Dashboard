@@ -40,6 +40,13 @@ public class RecentSearchlistController {
 	PromotionsService promotionsService;
 
 	/**
+	 * @param productService
+	 */
+	public RecentSearchlistController(ProductService productService) {
+		this.productService = productService;
+	}
+
+	/**
 	 * Get all the product based on user recent searches
 	 * 
 	 * @param userId

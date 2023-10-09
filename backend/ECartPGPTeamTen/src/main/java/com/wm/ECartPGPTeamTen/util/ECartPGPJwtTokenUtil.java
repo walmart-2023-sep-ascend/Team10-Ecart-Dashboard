@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.wm.ECartPGPTeamTen.service.MessageService;
-import com.wm.ECartPGPTeamTen.vo.UserDetailsVO;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

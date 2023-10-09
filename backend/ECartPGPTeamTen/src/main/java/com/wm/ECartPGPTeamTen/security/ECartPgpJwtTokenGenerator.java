@@ -1,6 +1,5 @@
 package com.wm.ECartPGPTeamTen.security;
 
-import java.util.Calendar;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.wm.ECartPGPTeamTen.util.ECartPGPJwtTokenUtil;
@@ -36,8 +34,8 @@ public class ECartPgpJwtTokenGenerator {
 	public String authenticateToken(String userName) throws Exception {
 		
 		log.info("Token Verificatoin for :"+userName);
-		long mUnique = Calendar.getInstance().getTimeInMillis();
-		String pwd = new BCryptPasswordEncoder().encode(userName);
+		//long mUnique = Calendar.getInstance().getTimeInMillis();
+		//String pwd = new BCryptPasswordEncoder().encode(userName);
 		authenticate(userName, userName + "");
 
 		final UserDetails userDetails = jwtInMemoryUserDetailsService.loadUserByUsername(userName);
