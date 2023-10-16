@@ -5,6 +5,7 @@ import static com.wm.ECartPGPTeamTen.util.ECartUtil.INTERNAL_ERROR;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -91,12 +92,23 @@ public class ProductService {
 				List<ProductsModel> prodList = productsDao.findFavCatAndBrands(arr);
 				logger.debug("After fetching product detail");
 				if (prodList != null && prodList.size() > 0) {
-					List<String> brandsList = prodList.stream().map(prod -> prod.getBrand())
-							.collect(Collectors.toList());
-					List<String> catList = prodList.stream().map(prod -> prod.getProductCategory())
-							.collect(Collectors.toList());
-					vo.setBrands(brandsList);
-					vo.setCategories(catList);
+					/*
+					 * List<String> brandsList = prodList.stream().map(prod -> prod.getBrand())
+					 * .collect(Collectors.toList()); List<String> catList =
+					 * prodList.stream().map(prod -> prod.getProductCategory())
+					 * .collect(Collectors.toList());
+					 */
+					
+					Map<String, List<ProductsModel>> brandsMap = prodList.stream()
+					        .collect(
+					                Collectors.groupingBy(ProductsModel::getBrand));
+					
+					
+					Map<String, List<ProductsModel>> catMap = prodList.stream()
+					        .collect(
+					                Collectors.groupingBy(ProductsModel::getProductCategory));
+					vo.setBrands(brandsMap);
+					vo.setCategories(catMap);
 					return vo;
 				}
 			}

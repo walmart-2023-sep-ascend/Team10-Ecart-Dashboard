@@ -99,7 +99,7 @@ public class ProductsDao {
 				String q = "{ $or: [{ productCategory : { $in : " + Arrays.asList(searchs) + " }},"
 						+ "{ brand : { $in : " + Arrays.asList(searchs) + " }}]}";
 				BasicQuery query = new BasicQuery(q);
-				query.fields().include("brand", "productCategory");
+				//query.fields().include("brand", "productCategory");
 				return mongoTemplate.find(query, ProductsModel.class);
 			}
 

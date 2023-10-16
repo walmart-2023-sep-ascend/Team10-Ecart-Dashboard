@@ -2,8 +2,11 @@ package com.wm.ECartPGPTeamTen.vo;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
+
+import com.wm.ECartPGPTeamTen.model.ProductsModel;
 
 import lombok.Data;
 import lombok.Getter;
@@ -17,6 +20,6 @@ public class CategoryAndBrandVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	List<String> brands;
-	List<String> categories;
+	Map<String, List<ProductsModel>> brands;
+	Map<String, List<ProductsModel>> categories;
 }
