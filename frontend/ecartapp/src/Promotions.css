@@ -1,0 +1,44 @@
+.promotions-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .promotion-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    max-width: 300px;
+    text-align: center;
+    animation: slide 10s linear infinite; /* Apply the slide animation */
+    display: inline-block; /* Ensure the cards are displayed in a line */
+    white-space: nowrap; /* Prevent line breaks */
+  }
+  
+  .promotion-card img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .promotions-heading {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold;
+    color: #333; /* Set your desired text color */
+    margin-bottom: 20px; /* Add some space below the heading */
+    text-align: center; /* Center-align the heading */
+    text-transform: uppercase; /* Convert text to uppercase */
+    letter-spacing: 1px; /* Add letter spacing */
+    background-color: lightblue; /* Set the background color to light blue */
+    padding: 5px; /* Add padding for spacing */
+  }
+
+  
+ 
+  @keyframes slide {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
