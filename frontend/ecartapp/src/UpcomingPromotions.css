@@ -1,0 +1,54 @@
+.upcoming-promotions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px; /* Add some space above the upcoming promotions */
+}
+
+.upcoming-promotion-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.upcoming-promotion-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.upcoming-promotions-heading {
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold;
+  color: #333; /* Set your desired text color */
+  margin-bottom: 20px; /* Add some space below the heading */
+  text-align: center; /* Center-align the heading */
+  text-transform: uppercase; /* Convert text to uppercase */
+  letter-spacing: 1px; /* Add letter spacing */
+  background-color: lightblue; /* Set the background color to yellow */
+  padding: 5px; /* Add padding for spacing */
+}
+
+.rectangle-box {
+  background-color: #f0f0f0; /* Set the background color for the box */
+  padding: 20px; /* Adjust the padding to control the box size */
+  text-align: center;
+}
+
+/* Blinking animation */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 5s linear infinite;
+}
