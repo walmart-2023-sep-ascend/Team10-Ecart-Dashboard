@@ -1,50 +1,100 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
 
   const [favProducts, setFavProducts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [cats, setCats] = useState([]);
+  const [authers, setAuthers] = useState({ email: "", id: 0, jwttoken: "", token: "" });
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const catsentries = Object.entries(cats);
   const brandsentries = Object.entries(brands);
-
+  //sessionStorage.setItem("tkn", "ecarteyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmFudmlsbGUwQG5wcy5nb3YiLCJleHAiOjE2OTc3MDY2NTgsImlhdCI6MTY5NzY5OTQ1OH0.izEIs7sl2YVrcEB9UppBGOCSNUPJx4d8mAn_7gFud-EN4bEScJWm3DgoqKL1Ay8VQiXReFfnot2CAX1VM7fa6A");
   useEffect(() => {
 
-    axios.get('http://localhost:9091/ECartPGPTen/api/ecartp/favBrandsCatgProducts/1', {
+
+    var s = sessionStorage.getItem("tkn")
+    const idParam = new URLSearchParams(location.search).get('id');
+    if (!s && !idParam) {
+      console.log('if');
+      navigate('/login');
+    } else {
+      console.log('else');
+      axios.post('http://localhost:9091/ECartPGPTen/api/ecarto/authenticate',
+        {
+          "email": idParam
+        })
+        .then(json => {
+          console.log("infoof is : ", json.data.body);
+          setAuthers(json.data.body);
+          console.log('auth.idaaaAA @@' + authers);
+          console.log('auth.idaaaid @@' + json.data.body.id);
+          sessionStorage.setItem("tkn", json.data.body.token);
+          if (json.data && json.data.code && json.data.code == 200) {
+            fetchKewords(json.data.body.id);
+          } else {
+            navigate('/login?err=' + json.data.code);
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      console.log('auth.id ' + authers.token);
+      console.log('auth : ' + authers);
+
+
+
+
+    }
+  }, []);
+
+  const fetchKewords = (id) => {
+    const ids = authers.id;
+    console.log("test" + ids);
+    const token = sessionStorage.getItem("tkn");
+    axios.get('http://localhost:9091/ECartPGPTen/api/ecartp/favBrandsCatgProducts/' + id, {
       headers: {
         "content-type": "application/json",
-        "Authorization": 'ecarteyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmFudmlsbGUwQG5wcy5nb3YiLCJleHAiOjE2OTc0ODYzMDcsImlhdCI6MTY5NzQ3OTEwN30.4jY4DHT3oU0Qjmcf0ylF3wSWO2IebASbaaHovBZUSeoNb0TiKoSTJRi5NIoDfi1yDw59ahtA-KIZxkqAQ-_m-A',
+        "Authorization": token,
       }
     })
       .then(json => {
-        console.log("Data is : ", json.data[0]);
-        setFavProducts(json.data);
+        console.log("Data is : ", json.data.body[0]);
+        //json.data.
+        if (json.data && json.data.code && json.data.code == 200) {
+          setFavProducts(json.data.body);
+        } else {
+          navigate('/login?err=' + json.data.code);
+        }
       })
       .catch((e) => {
         console.log(e);
       });
 
     /**Get brands and categories */
-    axios.get('http://localhost:9091/ECartPGPTen/api/ecartp/favBrandsCatg/1', {
+    axios.get('http://localhost:9091/ECartPGPTen/api/ecartp/favBrandsCatg/' + id, {
       headers: {
         "content-type": "application/json",
-        "Authorization": 'ecarteyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmFudmlsbGUwQG5wcy5nb3YiLCJleHAiOjE2OTc0ODYzMDcsImlhdCI6MTY5NzQ3OTEwN30.4jY4DHT3oU0Qjmcf0ylF3wSWO2IebASbaaHovBZUSeoNb0TiKoSTJRi5NIoDfi1yDw59ahtA-KIZxkqAQ-_m-A',
+        "Authorization": token,
       }
     })
       .then(json => {
-        console.log("cat is : ", json.data.categories);
-        setBrands(json.data.brands);
-        setCats(json.data.categories);
+        if (json.data && json.data.code && json.data.code == 200) {
+          console.log("cat is : ", json.data.body.categories);
+          setBrands(json.data.body.brands);
+          setCats(json.data.body.categories);
+        } else {
+          navigate('/login?err=' + json.data.code);
+        }
       })
       .catch((e) => {
         console.log(e);
       });
-
-  }, []);
-
+  }
   const catsentriesUI = catsentries.map(([key, value]) => (
     <dl className="row banner-sec-sub overflow-auto block-scroll">
       <dt className="col-sm-1 title1 ">

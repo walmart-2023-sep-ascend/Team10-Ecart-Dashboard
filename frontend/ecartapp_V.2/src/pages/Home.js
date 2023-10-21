@@ -1,9 +1,18 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 const Home = () => {
+  useEffect(() => {
 
+
+    var s = sessionStorage.getItem("tkn");
+    if (s) {
+      console.log("home" + s);
+    }
+
+  }
+    , []);
   return (
     <>
       <div className="banner-sec">
@@ -50,7 +59,7 @@ const Home = () => {
         <div className="banner-right col-lg-7 position-relative" style={{ paddingRight: "0", paddingLeft: "0" }}>
           <div className=" justify-content-center banner-sec-border banner-sec-sub">
             <p className="mb-0 text-center h4 margin-top5 sub-header-background-pro ">Promotions &nbsp;
-            <img className='img_profile' src="assets/promotions2.jpg" id="output" width="200" />
+              <img className='img_profile' src="assets/promotions2.jpg" id="output" width="200" />
             </p>
             <dl className="row banner-sec-sub">
               <dt className="col-sm-3 title1">Promotion Id :1</dt>
@@ -77,8 +86,8 @@ const Home = () => {
           </div>
           <div className=" justify-content-center banner-sec-border banner-sec-sub">
             <p className="mb-0 text-center h4 margin-top5 sub-header-background-upc">Upcoming Launches &nbsp;
-            <img className='img_profile' src="assets/promotions.jpg" id="output" width="200" />
-            
+              <img className='img_profile' src="assets/promotions.jpg" id="output" width="200" />
+
             </p>
             <dl className="row banner-sec-sub">
               <dt className="col-sm-3 title1">Launch Id :1</dt>

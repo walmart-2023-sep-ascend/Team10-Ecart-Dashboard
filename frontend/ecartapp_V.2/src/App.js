@@ -17,6 +17,7 @@ function App() {
       <HeaderTop />
       <Routes>
         <Route exact path="/" element={<Home/>}></Route>
+        <Route exact path="/login" element={<Home/>}></Route>
         <Route exact path="/dashboard" element={<Dashboard/>}></Route>
       </Routes>
       <Footer/>
