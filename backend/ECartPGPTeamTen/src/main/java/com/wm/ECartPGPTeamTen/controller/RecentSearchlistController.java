@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.wm.ECartPGPTeamTen.model.PromotionsModel;
 import com.wm.ECartPGPTeamTen.service.ProductService;
 import com.wm.ECartPGPTeamTen.service.PromotionsService;
 import com.wm.ECartPGPTeamTen.vo.CategoryAndBrandVO;
+import com.wm.ECartPGPTeamTen.vo.ResponseVO;
 
 /**
  * r0m09yu
@@ -55,19 +57,34 @@ public class RecentSearchlistController {
 	 * @throws ECartException
 	 */
 	@RequestMapping(value = "/recentSearches/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<ProductsModel>> getProductBasedonRecentSearch(@PathVariable(value = "id") int userId)
+	public ResponseEntity<ResponseVO> getProductBasedonRecentSearch(@PathVariable(value = "id") int userId)
 			throws ResourceNotFoundException, ECartException {
 		logger.info("Fetching Recent searches for User id :{0}", userId);
+		ResponseVO vo = new ResponseVO();
 		try {
 			List<ProductsModel> products = productService.getRecentSearches(userId);
 			if (products != null && products.size() > 0) {
-				return ResponseEntity.ok().body(products);
+
+				vo.setBody(products);
+				vo.setCode(HttpStatus.OK.value());
+				vo.setMessage("SUCCESS");
+				return ResponseEntity.ok().body(vo);
+				// return ResponseEntity.ok().body(products);
 			} else {
 				logger.error("Fetching user infol for User id :{0}", userId);
-				throw new ResourceNotFoundException("No products found for this id :: " + userId);
+				vo.setBody(products);
+				vo.setCode(HttpStatus.NOT_FOUND.value());
+				vo.setMessage("No products found for this id :: " + userId);
+				return ResponseEntity.ok().body(vo);
+				// throw new ResourceNotFoundException("No products found for this id :: " +
+				// userId);
 			}
 		} catch (Exception e) {
-			throw new ECartException(INTERNAL_ERROR + " :: " + userId);
+			vo.setBody(e.getMessage());
+			vo.setCode(HttpStatus.BAD_GATEWAY.value());
+			vo.setMessage(INTERNAL_ERROR);
+			return ResponseEntity.ok().body(vo);
+			// throw new ECartException(INTERNAL_ERROR + " :: " + userId);
 		}
 	}
 
@@ -80,19 +97,32 @@ public class RecentSearchlistController {
 	 * @throws ECartException
 	 */
 	@RequestMapping(value = "/favBrandsCatg/{id}", method = RequestMethod.GET)
-	public ResponseEntity<CategoryAndBrandVO> getFavBrandsCategories(@PathVariable(value = "id") int userId)
+	public ResponseEntity<ResponseVO> getFavBrandsCategories(@PathVariable(value = "id") int userId)
 			throws ResourceNotFoundException, ECartException {
 		logger.info("Fetching Favourite brand and categories detials :{0}", userId);
+		ResponseVO vo = new ResponseVO();
 		try {
 			CategoryAndBrandVO catAndBrandDetails = productService.getFavBrandsCategories(userId);
 			if (catAndBrandDetails != null) {
-				return ResponseEntity.ok().body(catAndBrandDetails);
+				vo.setBody(catAndBrandDetails);
+				vo.setCode(HttpStatus.OK.value());
+				vo.setMessage("SUCCESS");
+				return ResponseEntity.ok().body(vo);
 			} else {
 				logger.error("Fetching user infol for User id :{0}", userId);
-				throw new ResourceNotFoundException("No products found for this id :: " + userId);
+				vo.setBody(catAndBrandDetails);
+				vo.setCode(HttpStatus.NOT_FOUND.value());
+				vo.setMessage("No products found for this id :: " + userId);
+				return ResponseEntity.ok().body(vo);
+				// throw new ResourceNotFoundException("No products found for this id :: " +
+				// userId);
 			}
 		} catch (Exception e) {
-			throw new ECartException(INTERNAL_ERROR + " :: " + userId);
+			vo.setBody(e.getMessage());
+			vo.setCode(HttpStatus.BAD_GATEWAY.value());
+			vo.setMessage(INTERNAL_ERROR);
+			return ResponseEntity.ok().body(vo);
+			// throw new ECartException(INTERNAL_ERROR + " :: " + userId);
 		}
 	}
 
@@ -105,19 +135,33 @@ public class RecentSearchlistController {
 	 * @throws ECartException
 	 */
 	@RequestMapping(value = "/favBrandsCatgProducts/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<ProductsModel>> getFavBrandsCategoriesProducts(@PathVariable(value = "id") int userId)
+	public ResponseEntity<ResponseVO> getFavBrandsCategoriesProducts(@PathVariable(value = "id") int userId)
 			throws ResourceNotFoundException, ECartException {
 		logger.info("Fetching Favourite brand and categories detials :{0}", userId);
+		ResponseVO vo = new ResponseVO();
 		try {
 			List<ProductsModel> products = productService.getFavBrandsCategoriesProducts(userId);
 			if (products != null && products.size() > 0) {
-				return ResponseEntity.ok().body(products);
+				vo.setBody(products);
+				vo.setCode(HttpStatus.OK.value());
+				vo.setMessage("SUCCESS");
+				return ResponseEntity.ok().body(vo);
+				// return ResponseEntity.ok().body(products);
 			} else {
 				logger.error("Fetching fav products based on cate id :{0}", userId);
-				throw new ResourceNotFoundException("No products found for this id :: " + userId);
+				vo.setBody(products);
+				vo.setCode(HttpStatus.NOT_FOUND.value());
+				vo.setMessage("No products found for this id :: " + userId);
+				return ResponseEntity.ok().body(vo);
+				// throw new ResourceNotFoundException("No products found for this id :: " +
+				// userId);
 			}
 		} catch (Exception e) {
-			throw new ECartException(INTERNAL_ERROR + " :: " + userId);
+			vo.setBody(e.getMessage());
+			vo.setCode(HttpStatus.BAD_GATEWAY.value());
+			vo.setMessage(INTERNAL_ERROR);
+			return ResponseEntity.ok().body(vo);
+			// throw new ECartException(INTERNAL_ERROR + " :: " + userId);
 		}
 	}
 

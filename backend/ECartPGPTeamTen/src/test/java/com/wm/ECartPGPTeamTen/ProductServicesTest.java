@@ -30,6 +30,7 @@ import com.wm.ECartPGPTeamTen.model.ProductsModel;
 import com.wm.ECartPGPTeamTen.model.UserModel;
 import com.wm.ECartPGPTeamTen.service.ProductService;
 import com.wm.ECartPGPTeamTen.vo.CategoryAndBrandVO;
+import com.wm.ECartPGPTeamTen.vo.ResponseVO;
 
 public class ProductServicesTest extends BaseTest {
 
@@ -81,7 +82,7 @@ public class ProductServicesTest extends BaseTest {
 		
 		when(productsDao.findProducts(any())).thenReturn(prodList);
 		
-		ResponseEntity<List<ProductsModel>> categoryAndBrandVO = searchlistController.getProductBasedonRecentSearch(1);
+		ResponseEntity<ResponseVO> categoryAndBrandVO = searchlistController.getProductBasedonRecentSearch(1);
 		assertTrue(categoryAndBrandVO.getStatusCode().is2xxSuccessful());
 	}
 	@Test
@@ -140,7 +141,7 @@ public class ProductServicesTest extends BaseTest {
 		
 		when(productsDao.findFavCatAndBrands(any())).thenReturn(prodList);
 		
-		ResponseEntity<CategoryAndBrandVO> categoryAndBrandVO = searchlistController.getFavBrandsCategories(1);
+		ResponseEntity<ResponseVO> categoryAndBrandVO = searchlistController.getFavBrandsCategories(1);
 		assertTrue(categoryAndBrandVO.getStatusCode().is2xxSuccessful());
 	}
 	
