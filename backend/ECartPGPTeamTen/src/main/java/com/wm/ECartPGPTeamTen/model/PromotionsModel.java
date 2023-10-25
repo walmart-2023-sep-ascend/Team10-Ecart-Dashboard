@@ -21,11 +21,11 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-@Document(collection = "promotions")
+@Document(collection = "TejaPromotions")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PromotionsModel {
+public class Promotion {
 
 	@Id
 	@MongoId(FieldType.OBJECT_ID)
@@ -38,6 +38,23 @@ public class PromotionsModel {
 	private Date endDate;				
 	private String status;					
 	private String valueChange;			
-	private Integer noOfPromo;				
+	private Integer noOfPromo;
+	public Integer getPromotionID() {
+		// TODO Auto-generated method stub
+		return promotionID;
+	}
+	public String promotionDescription() {
+		// TODO Auto-generated method stub
+		return promotionDescription;
+	}
+	
+	public String getValueChange() {
+		// TODO Auto-generated method stub
+		return valueChange;
+	}				
 
 }
+
+
+
+
