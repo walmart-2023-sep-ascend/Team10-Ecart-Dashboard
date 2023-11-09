@@ -25,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Promotion {
+public class PromotionsModel {
 
 	@Id
 	@MongoId(FieldType.OBJECT_ID)

@@ -2,22 +2,18 @@ package com.wm.ECartPGPTeamTen.service;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.stream.Collectors;
 import java.util.List;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.Date;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wm.ECartPGPTeamTene.Dto.UpcomingPromotionDTO;
+import com.wm.ECartPGPTeamTen.Dto.UpcomingPromotionDTO;
 import com.wm.ECartPGPTeamTen.dao.repository.UpcomingPromotionRepository;
-import com.wm.ECartPGPTeamTen.model.PromotionsModel;
 import com.wm.ECartPGPTeamTen.exception.ECartException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.wm.ECartPGPTeamTen.model.PromotionsModel;
 
 @Service
 public class UpcomingPromotionService {
@@ -50,7 +46,7 @@ public class UpcomingPromotionService {
             calendar.add(Calendar.DATE, 30);
             Date endDate = calendar.getTime();
 
-            List<Promotion> activePromotions = promotionRepository.findActivePromotions(currentDate, endDate, "active");
+            List<PromotionsModel> activePromotions = promotionRepository.findActivePromotions(currentDate, endDate, "active");
 
             System.out.println("Date Passed from service Layer: " + currentDate);
             System.out.println("Active Promotions: " + activePromotions);
@@ -66,15 +62,15 @@ public class UpcomingPromotionService {
             
             logger.info("Date Passed from service Layer:" + currentDate);
 
-            for (PromotionsModel PromotionsModel : activePromotions) {
-            	 logger.info("Promotion ID: " + PromotionsModel.getPromotionID());
-            	 logger.info("Promotion Name: " + PromotionsModel.promotionDescription());
-            	 logger.info("Value change: " + PromotionsModel.getValueChange()); // Use getValueChange directly
+            for (PromotionsModel promotionsModel : activePromotions) {
+            	 logger.info("Promotion ID: " + promotionsModel.getPromotionID());
+            	 logger.info("Promotion Name: " + promotionsModel.promotionDescription());
+            	 logger.info("Value change: " + promotionsModel.getValueChange()); // Use getValueChange directly
       
             }
 
             return activePromotions.stream()
-                    .map(promotion -> new UpcomingPromotionDTO(PromotionsModel.getPromotionID(), PromotionsModel.promotionDescription(), promotion.getValueChange())) // Use getValueChange directly
+                    .map(promotion -> new UpcomingPromotionDTO(promotion.getPromotionID(), promotion.promotionDescription(), promotion.getValueChange())) // Use getValueChange directly
                     .collect(Collectors.toList());
         } catch (Exception e) {
             logger.error("Error occurred " + e);
