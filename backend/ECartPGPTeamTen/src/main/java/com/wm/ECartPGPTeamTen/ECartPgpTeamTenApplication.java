@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
 /**
  * r0m09yu - Raju Mummidi
  */
@@ -14,6 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.wm.ECartPGPTeamTen")
 @SpringBootApplication
 @EnableAutoConfiguration
+@OpenAPIDefinition(info = @Info(title = "ECart API", version = "2.0", description = "ECart Information"))
 public class ECartPgpTeamTenApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(ECartPgpTeamTenApplication.class);

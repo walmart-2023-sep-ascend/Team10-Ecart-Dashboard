@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.wm.ECartPGPTeamTen.service.MessageService;
 
@@ -17,7 +18,7 @@ import com.wm.ECartPGPTeamTen.service.MessageService;
  * r0m09yu
  */
 
-@Controller
+@RestController
 @RequestMapping("/api/ecarto")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ECartPgpTenTestController {

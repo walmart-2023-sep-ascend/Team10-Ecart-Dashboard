@@ -86,6 +86,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers(nonRestricted).permitAll()
+				//.authorizeRequests().antMatchers("/**").permitAll()
+				//.authorizeRequests().antMatchers("/swagger-ui/**", "/javainuse-openapi/**").permitAll()
 				.antMatchers("/api/admin/**").hasAnyAuthority(adminRole)
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and()
@@ -102,4 +104,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
+	
+	 @Override
+	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	        auth.inMemoryAuthentication()
+	                .withUser("javainuse")
+	                .password(new BCryptPasswordEncoder().encode("javainuse"))
+	                .authorities("ADMIN");
+	    }
 }

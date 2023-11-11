@@ -28,6 +28,13 @@ spring:
         port: 27017
         #uri: mongodb+srv://mongoUser:mongoUser@cluster0.jlhsj7w.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp 
         uri: mongodb://localhost:27017
+   mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+springdoc:
+   swagger-ui:
+     disable-swagger-default-url: true
+     
 server:
    port: 9091
 logging:
@@ -61,6 +68,12 @@ spring:
          
       #ES Configurations
       batchSize: 10000
+   mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+springdoc:
+   swagger-ui:
+     disable-swagger-default-url: true      
       
 server:
    port: 9092
@@ -90,7 +103,12 @@ spring:
          
       #ES Configurations
       batchSize: 10000
-      
+   mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+springdoc:
+   swagger-ui:
+     disable-swagger-default-url: true      
 server:
    port: 9093
    

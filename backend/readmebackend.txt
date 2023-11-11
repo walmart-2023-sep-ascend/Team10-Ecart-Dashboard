@@ -38,3 +38,6 @@
 	
 	- Links to above display 
 	   Getting product details 	
+	   
+5. SWAGGER
+   http://localhost:9091/ECartPGPTen/swagger-ui/index.html?configUrl=/ECartPGPTen/v3/api-docs/swagger-config#/
