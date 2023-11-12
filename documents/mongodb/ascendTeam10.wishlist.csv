@@ -1,0 +1,4 @@
+_id,wishListId,userId,products[0].productId,products[1].productId,products[2].productId,products[0].inventoryStatus,products[1].inventoryStatus,products[2].inventoryStatus
+65183a594a6559ec4c7bdf9c,1,suzielli0@diigo.com,01H97JVYM6JMAH5XKXE7W592TV,01H97JVYM8NJV9MXVMFPAE8QB9,,not available,stale,
+65183a594a6559ec4c7bdf9d,2,jfockes1@pinterest.com,01H97JVYM9S71F3JEPDCA3QBMQ,01H97JVYM9BP2SW84YJN6GMTN9,,available,stale,
+65183a594a6559ec4c7bdf9e,3,mduggary2@barnesandnoble.com,01H97JVYMBBA4RXH9FKNE4BJ1H,01H97JVYMB4DB4JPNY9GRRCT4D,01H97JVYMBSQNAFAB4VD0YX2QG,available,stale,available

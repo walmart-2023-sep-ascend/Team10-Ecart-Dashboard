@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
+
+
 
 const Dashboard = () => {
 
@@ -96,15 +107,11 @@ const Dashboard = () => {
       });
   }
   const catsentriesUI = catsentries.map(([key, value]) => (
-    <dl className="row banner-sec-sub overflow-auto block-scroll">
-      <dt className="col-sm-1 title1 ">
-        <img className='img_profile img_profile-data' src={value[0].iconUrl} id="output" width="100" />
-      </dt>
-      <dd className="col-sm-11">{key}</dd>
-    </dl>
+      <SwiperSlide><img className='img_profile img_profile-data' src={value[0].iconUrl} id="output" width="100" /></SwiperSlide>
   ));
 
   const brandsentriesUI = brandsentries.map(([key, value]) => (
+
     <dl className="row banner-sec-sub overflow-auto block-scroll">
       <dt className="col-sm-1 title1 ">
         <img className='img_profile img_profile-data' src={value[0].iconUrl} id="output" width="100" />
@@ -115,8 +122,9 @@ const Dashboard = () => {
 
   return (
     <>
+
       <div className="banner-sec">
-        <div className="banner-right col-lg-5 banner-sec-border position-relative" style={{ paddingRight: "0", paddingLeft: "0" }}>
+        <div className="banner-right col-lg-6 banner-sec-border position-relative" style={{ paddingRight: "0", paddingLeft: "0" }}>
           <p className="mb-0 text-center h4 margin-top5 sub-header-background-upc2 ">Favoutires &nbsp;
             <img className='img_profile' src="assets/fav.jfif" id="output" width="200" />
           </p>
@@ -125,7 +133,16 @@ const Dashboard = () => {
               <span>Categories &nbsp;</span>
               {/* <img className='img_profile' src="assets/promotions2.jpg" id="output" width="200" /> */}
             </p>
-            {catsentriesUI}
+            <Swiper
+      spaceBetween={50}
+      slidesPerView={1}
+      autoplay = {true}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper) => console.log(swiper)}
+    >
+      {catsentriesUI}
+      </Swiper>
+            
           </div>
           <div className=" justify-content-center banner-sec-border banner-sec-sub">
             <p className="mb-0 text-center h4 margin-top5 sub-header-background-upc">Brands &nbsp;
@@ -151,8 +168,7 @@ const Dashboard = () => {
 
           </div>
         </div>
-        <div className="banner-left banner-sec-border col-lg-1 position-relative " style={{ paddingRight: "0", paddingLeft: "0", width: "6px" }}>
-        </div>
+        
         <div className="banner-right col-lg-6 position-relative" style={{ paddingRight: "0", paddingLeft: "0" }}>
           <div className=" justify-content-center banner-sec-border banner-sec-sub">
             <p className="mb-0 text-center h4 margin-top5 sub-header-background-pro ">Notifications &nbsp;
