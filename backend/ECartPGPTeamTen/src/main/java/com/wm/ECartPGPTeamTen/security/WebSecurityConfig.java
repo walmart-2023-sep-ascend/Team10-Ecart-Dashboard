@@ -105,11 +105,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
-	 @Override
-	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	        auth.inMemoryAuthentication()
-	                .withUser("javainuse")
-	                .password(new BCryptPasswordEncoder().encode("javainuse"))
-	                .authorities("ADMIN");
-	    }
+	/*
+	 * @Override protected void configure(AuthenticationManagerBuilder auth) throws
+	 * Exception { auth.inMemoryAuthentication() .withUser("javainuse")
+	 * .password(new BCryptPasswordEncoder().encode("javainuse"))
+	 * .authorities("ADMIN"); }
+	 */
 }

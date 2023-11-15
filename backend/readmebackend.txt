@@ -40,4 +40,9 @@
 	   Getting product details 	
 	   
 5. SWAGGER
-   http://localhost:9091/ECartPGPTen/swagger-ui/index.html?configUrl=/ECartPGPTen/v3/api-docs/swagger-config#/
+   http://localhost:9090/ECartPGPTen/swagger-ui/index.html?configUrl=/ECartPGPTen/v3/api-docs/swagger-config#/
+
+6. Docker: 
+	docker pull mongo
+	docker  ps
+	docker-compose up
