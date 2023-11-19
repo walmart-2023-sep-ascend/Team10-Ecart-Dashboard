@@ -35,7 +35,7 @@ const Dashboard = () => {
       navigate('/login');
     } else {
       console.log('else');
-      axios.post('http://localhost:9091/ECartPGPTen/api/ecarto/authenticate',
+      axios.post('http://localhost:9090/ECartPGPTen/api/ecarto/authenticate',
         {
           "email": idParam
         })
@@ -67,7 +67,7 @@ const Dashboard = () => {
     const ids = authers.id;
     console.log("test" + ids);
     const token = sessionStorage.getItem("tkn");
-    axios.get('http://localhost:9091/ECartPGPTen/api/ecartp/favBrandsCatgProducts/' + id, {
+    axios.get('http://localhost:9090/ECartPGPTen/api/ecartp/favBrandsCatgProducts/' + id, {
       headers: {
         "content-type": "application/json",
         "Authorization": token,
@@ -87,7 +87,7 @@ const Dashboard = () => {
       });
 
     /**Get brands and categories */
-    axios.get('http://localhost:9091/ECartPGPTen/api/ecartp/favBrandsCatg/' + id, {
+    axios.get('http://localhost:9090/ECartPGPTen/api/ecartp/favBrandsCatg/' + id, {
       headers: {
         "content-type": "application/json",
         "Authorization": token,

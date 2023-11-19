@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  reactapp:
+    image: ascendreactapp:latest
+    container_name: "ascendreactapp"
+    build:
+      context: .
+    ports:
+      - 80:80
