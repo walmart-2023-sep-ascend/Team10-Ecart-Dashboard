@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   reactapp:
-    image: ascendreactapp:latest
+    image: rajumummidi/ascendreactapp:v1
     container_name: "ascendreactapp"
     build:
       context: .

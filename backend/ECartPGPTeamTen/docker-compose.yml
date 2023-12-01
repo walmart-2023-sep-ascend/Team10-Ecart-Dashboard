@@ -7,7 +7,7 @@ services:
       - 27017:27017
   ECartapp:
     build: .
-    image: ascendappp
+    image: rajumummidi/ascendappp:v1
     container_name: "ascendapp"
     ports:
       - 9090:9090
