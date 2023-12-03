@@ -13,7 +13,10 @@ server:
        on-profile: dev
 ---
 spring:
-   profiles: dev
+   config:
+      activate:
+       on-profile: dev
+   #profiles: dev
    active: true
    variables:
       imagepath: C:\\Raju\\Code\\test\\
@@ -60,7 +63,10 @@ logging:
                 MongoTemplate: DEBUG
 ---
 spring: 
-   profiles: stg
+   config:
+      activate:
+       on-profile: stg   
+   #profiles: stg
    active: false
    variables:
       imagepath: //app//omni//ESOMNI//reports//
@@ -94,8 +100,11 @@ logging:
        com.wm.ECartPGPTen: debug
        org.springframework: error	
 ---
-spring: 
-   profiles: prod
+spring:
+   config:
+      activate:
+       on-profile: prod 
+   #profiles: prod
    active: false
    variables:
       imagepath: //app//omni//ESOMNI//reports//

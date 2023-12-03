@@ -1,4 +1,4 @@
-package com.wm.ECartPGPTeamTen.security;
+/*package com.wm.ECartPGPTeamTen.security;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -14,12 +14,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;*/
 
 /**
  * @author Raju
  *
  */
+/*
 @Component
 public class ECartPgpJwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 
@@ -61,3 +62,4 @@ public class ECartPgpJwtAuthenticationEntryPoint implements AuthenticationEntryP
 		mapper.writeValue(response.getOutputStream(), body);
 	}
 }
+*/

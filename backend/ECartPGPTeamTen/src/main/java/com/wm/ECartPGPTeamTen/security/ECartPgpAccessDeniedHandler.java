@@ -1,4 +1,4 @@
-package com.wm.ECartPGPTeamTen.security;
+/*package com.wm.ECartPGPTeamTen.security;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,10 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * @author Raju
- *
- */
+
 @Component
 public class ECartPgpAccessDeniedHandler implements AccessDeniedHandler
 {
@@ -38,3 +35,4 @@ public class ECartPgpAccessDeniedHandler implements AccessDeniedHandler
 	}
 
 }
+*/
