@@ -7,7 +7,7 @@ spring:
 server:
    servlet:
      contextPath: /ECartPGPTen	
-   port: 9090
+   port: 9902
    config:
      activate:
        on-profile: dev
@@ -26,10 +26,10 @@ spring:
      mongodb:
         database: ascendTeam10
         port: 27017
-        host: host.docker.internal
+        #host: host.docker.internal
         #host: 172.21.0.2
         #uri: mongodb+srv://mongoUser:mongoUser@cluster0.jlhsj7w.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp 
-        #uri: mongodb://localhost:27017
+        uri: mongodb://localhost:27017
    mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -38,7 +38,7 @@ springdoc:
      disable-swagger-default-url: true
      
 server:
-   port: 9090
+   port: 9902
 logging:
     file: 
        name: ${spring.variables.logpath}ECartPGPTen.log
@@ -78,7 +78,7 @@ springdoc:
      disable-swagger-default-url: true      
       
 server:
-   port: 9092
+   port: 9902
    
 logging:
     file: 

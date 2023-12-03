@@ -10,6 +10,6 @@ services:
     image: rajumummidi/ascendappp:v1
     container_name: "ascendapp"
     ports:
-      - 9090:9090
+      - 9902:9902
     links: 
       - mongodb  
