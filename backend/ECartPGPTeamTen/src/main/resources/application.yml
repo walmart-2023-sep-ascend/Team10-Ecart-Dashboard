@@ -7,10 +7,14 @@ spring:
 server:
    servlet:
      contextPath: /ECartPGPTen	
-   port: 9902
+   port: 9903
    config:
      activate:
        on-profile: dev
+       
+eureka:
+   instance:
+        hostname: localhost
 ---
 spring:
    config:
@@ -41,7 +45,7 @@ springdoc:
      disable-swagger-default-url: true
      
 server:
-   port: 9902
+   port: 9903
 logging:
     file: 
        name: ${spring.variables.logpath}ECartPGPTen.log
@@ -84,7 +88,7 @@ springdoc:
      disable-swagger-default-url: true      
       
 server:
-   port: 9902
+   port: 9903
    
 logging:
     file: 

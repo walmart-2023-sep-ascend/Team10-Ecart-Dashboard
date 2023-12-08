@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -17,6 +18,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 @ComponentScan("com.wm.ECartPGPTeamTen")
 @SpringBootApplication
 @EnableAutoConfiguration
+@EnableDiscoveryClient
 @OpenAPIDefinition(info = @Info(title = "ECart API", version = "2.0", description = "ECart Information"))
 public class ECartPgpTeamTenApplication {
 
