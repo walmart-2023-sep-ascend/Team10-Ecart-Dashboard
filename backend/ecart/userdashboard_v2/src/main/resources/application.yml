@@ -1,0 +1,141 @@
+spring:
+   application:
+      name: userdashboard
+   profiles:
+    active: dev
+   
+server:
+   servlet:
+     contextPath: /userdashboard	
+   port: 9903
+   config:
+     activate:
+       on-profile: dev
+       
+eureka:
+   instance:
+      hostname: http://eurekha-server-container:8761/eureka
+---
+spring:
+   config:
+      activate:
+       on-profile: dev
+   #profiles: dev
+   active: true
+   variables:
+      logpath: \
+   application:
+      name: userdashboard
+      #ES Configurations
+      batchSize: 10000
+   data:
+     mongodb:
+        database: PDP
+        port: 27017
+        #host: host.docker.internal
+        #host: 172.21.0.2
+        uri: mongodb+srv://Team03PDP:46IfTCwXGWJU9szW@cluster0.f89yz6n.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp
+        #uri: mongodb://localhost:27017
+   mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+springdoc:
+   swagger-ui:
+     disable-swagger-default-url: true
+     
+server:
+   port: 9903
+logging:
+    file: 
+       name: ${spring.variables.logpath}ECartPGPTen.log
+       max-size: 10MB
+       max-history: 10
+       total-size-cap: 1024MB
+       clean-history-on-start: true
+    pattern:
+       rolling-file-name: ${spring.variables.logpath}ECar-%d{yyyy-MM-dd}.%i.log
+    level:
+       root: info
+       com.wm.ECartPGPTen: info
+       org.springframework: info
+       org:
+        springframework:
+          data:
+            mongodb:
+              core:
+                MongoTemplate: DEBUG
+---
+spring: 
+   config:
+      activate:
+       on-profile: stg   
+   #profiles: stg
+   active: false
+   variables:
+      imagepath: //app//omni//ESOMNI//reports//
+      logpath: //app//omni//ESOMNI//
+   application:
+      name: ECartPGPTen
+         
+      #ES Configurations
+      batchSize: 10000
+   mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+springdoc:
+   swagger-ui:
+     disable-swagger-default-url: true      
+      
+server:
+   port: 9903
+   
+logging:
+    file: 
+       name: ${spring.variables.logpath}logs//ECartPGPTen.log
+       max-size: 200MB
+       max-history: 10
+       total-size-cap: 1024MB
+       clean-history-on-start: true
+    pattern:
+       rolling-file-name: ${spring.variables.logpath}ECar//ECar-%d{yyyy-MM-dd}.%i.log
+    level:
+       root: info
+       com.wm.ECartPGPTen: debug
+       org.springframework: error	
+---
+spring:
+   config:
+      activate:
+       on-profile: prod 
+   #profiles: prod
+   active: false
+   variables:
+      imagepath: //app//omni//ESOMNI//reports//
+      logpath: //app//omni//ESOMNI//
+   application:
+      name: ECartPGPTen
+         
+      #ES Configurations
+      batchSize: 10000
+   mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+springdoc:
+   swagger-ui:
+     disable-swagger-default-url: true      
+server:
+   port: 9093
+   
+logging:
+    file: 
+       name: ${spring.variables.logpath}logs//ECartPGPTen.log
+       max-size: 200MB
+       max-history: 10
+       total-size-cap: 1024MB
+       clean-history-on-start: true
+    pattern:
+       rolling-file-name: ${spring.variables.logpath}ECar//ECar-%d{yyyy-MM-dd}.%i.log
+    level:
+       root: info
+       com.wm.ECartPGPTen: debug
+       org.springframework: error	
