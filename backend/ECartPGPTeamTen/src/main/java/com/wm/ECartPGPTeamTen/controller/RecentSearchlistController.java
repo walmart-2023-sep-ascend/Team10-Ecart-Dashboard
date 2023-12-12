@@ -30,7 +30,7 @@ import com.wm.ECartPGPTeamTen.vo.ResponseVO;
 
 @RestController
 @RequestMapping("/api/ecartp")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RecentSearchlistController {
 
 	private static final Logger logger = LoggerFactory.getLogger(RecentSearchlistController.class);

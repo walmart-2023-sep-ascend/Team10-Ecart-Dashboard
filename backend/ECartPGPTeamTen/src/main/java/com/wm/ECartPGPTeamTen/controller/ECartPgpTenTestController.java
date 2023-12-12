@@ -20,6 +20,7 @@ import com.wm.ECartPGPTeamTen.service.MessageService;
 
 @RestController
 @RequestMapping("/api/ecarto")
+//@CrossOrigin(origins = "http://localhost:9900")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ECartPgpTenTestController {
 

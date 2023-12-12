@@ -13,7 +13,7 @@ server:
        on-profile: dev
        
 eureka:
-   instance:
+  instance:
         hostname: localhost
 ---
 spring:
@@ -37,12 +37,8 @@ spring:
         #host: 172.21.0.2
         #uri: mongodb+srv://mongoUser:mongoUser@cluster0.jlhsj7w.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp 
         uri: mongodb://localhost:27017
-   mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-springdoc:
-   swagger-ui:
-     disable-swagger-default-url: true
+
+
      
 server:
    port: 9903
@@ -80,12 +76,7 @@ spring:
          
       #ES Configurations
       batchSize: 10000
-   mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-springdoc:
-   swagger-ui:
-     disable-swagger-default-url: true      
+   
       
 server:
    port: 9903
@@ -118,12 +109,7 @@ spring:
          
       #ES Configurations
       batchSize: 10000
-   mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-springdoc:
-   swagger-ui:
-     disable-swagger-default-url: true      
+    
 server:
    port: 9093
    

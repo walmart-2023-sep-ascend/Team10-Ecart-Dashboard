@@ -19,7 +19,7 @@ import com.wm.ECartPGPTeamTen.model.PromotionsModel;
 
 @RestController
 @RequestMapping("/promotions")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UpcomingPromotionsController {
 	
     @Autowired
