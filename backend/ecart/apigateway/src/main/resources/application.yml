@@ -16,7 +16,7 @@ spring:
 eureka:
   instance:
        hostname: localhost
-  preferIpAddress: false 
+ # preferIpAddress: false 
   client:
        serviceUrl:
            defaultZone:  http://localhost:8761/eureka
@@ -31,4 +31,4 @@ jwt:
 auth:
   routes : /ECartPGPTen/api/ecarto/status,/auth/token
 gateway:
-  passroute: /ECartPGPTen/api/**,/api/userdashboard/**
+  passroute: /ECartPGPTen/api/**,/userdashboard/api/**

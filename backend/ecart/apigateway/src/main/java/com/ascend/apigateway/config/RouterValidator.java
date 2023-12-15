@@ -15,7 +15,7 @@ public class RouterValidator {
 	
 	
     public static List<String> openApiEndpoints = List.of(
-            "/ECartPGPTen/api/ecarto/status"
+            "/ECartPGPTen/api/ecarto/status,/auth/toke"
     );
 
     public Predicate<ServerHttpRequest> isSecured =
