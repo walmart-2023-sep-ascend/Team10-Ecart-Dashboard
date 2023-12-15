@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    ports:
+      - 27017:27017
+  ECartapp:
+    build: .
+    image: rajumummidi/ascendappp:v1
+    container_name: "ascendapp"
+    ports:
+      - 9902:9902
+    links: 
+      - mongodb  
